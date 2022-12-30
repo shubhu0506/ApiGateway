@@ -16,7 +16,7 @@ spring:
         - id: MASTER-SERVICE
           uri: lb://MASTER-SERVICE
           predicates:
-            - Path=/class/**,/region/**
+            - Path=/class/**,/region/**,/school/**,/educationalInstitution/**,/student/**
 
 eureka:
   instance:
