@@ -5,24 +5,29 @@ spring:
   application:
     name: API-GATEWAY
 
+  config:
+    import: optional:configserver:http://43.241.63.102:8888
+
   cloud:
     gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowed-origins: "*"
+            allowed-methods: "*"
+            allowed-headers: "*"
       routes:
         - id: USER-SERVICE
           uri: lb://USER-SERVICE
           predicates:
-            - Path=/user/**,/role/**,/authenticate,/validate
+            - Path=/user/**,/role/**,/authenticate,/validate,/refresh
 
         - id: MASTER-SERVICE
           uri: lb://MASTER-SERVICE
           predicates:
             - Path=/class/**,/region/**,/school/**,/educationalInstitution/**,/student/**
 
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    fetch-registry: true
-    register-with-eureka: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka
+        - id: REPORT-SERVICE
+          uri: lb://REPORT-SERVICE
+          predicates:
+            - Path=/class/**,/region/**,/school/**,/educationalInstitution/**,/student/**
