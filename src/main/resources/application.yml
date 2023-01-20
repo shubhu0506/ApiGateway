@@ -6,7 +6,7 @@ spring:
     name: API-GATEWAY
 
   config:
-    import: optional:configserver:http://43.241.63.102:8888
+    import: optional:configserver:http://localhost:8888
 
   cloud:
     gateway:
@@ -30,4 +30,4 @@ spring:
         - id: REPORT-SERVICE
           uri: lb://REPORT-SERVICE
           predicates:
-            - Path=/class/**,/region/**,/school/**,/educationalInstitution/**,/student/**
+            - Path=/report/**
