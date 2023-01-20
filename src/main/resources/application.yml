@@ -30,4 +30,4 @@ spring:
         - id: REPORT-SERVICE
           uri: lb://REPORT-SERVICE
           predicates:
-            - Path=/class/**,/region/**,/school/**,/educationalInstitution/**,/student/**
+            - Path=/report/**
