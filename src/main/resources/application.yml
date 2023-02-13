@@ -1,15 +1,24 @@
 server:
   port: 8765
+  address: 0.0.0.0
+  ssl:
+    key-store: classpath:certificate.p12
+    key-store-password: EbBP[^{j`X~|j`x(
+    key-store-type: PKCS12
+    enabled: true
 
 spring:
   application:
     name: API-GATEWAY
 
   config:
-    import: optional:configserver:http://43.241.63.102:8888
+    import: optional:configserver:http://localhost:8888
 
   cloud:
     gateway:
+      httpclient:
+        ssl:
+          use-insecure-trust-manager: true
       globalcors:
         cors-configurations:
           '[/**]':
@@ -31,3 +40,8 @@ spring:
           uri: lb://REPORT-SERVICE
           predicates:
             - Path=/report/**
+
+        - id: TC-SERVICE
+          uri: lb://TC-SERVICE
+          predicates:
+            - Path=/tc/**
