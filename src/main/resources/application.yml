@@ -42,6 +42,6 @@ spring:
             - Path=/report/**
 
         - id: TC-SERVICE
-            uri: lb://TC-SERVICE
-            predicates:
-              - Path=/tc/**
+          uri: lb://TC-SERVICE
+          predicates:
+            - Path=/tc/**
